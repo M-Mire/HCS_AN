@@ -1,5 +1,4 @@
-export type Emoji = {
-  code: string;
-  emoji: string;
-  description: string;
+export type EmojiCategory = {
+  name: string;
+  emojis: string[];
 };

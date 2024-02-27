@@ -1,14 +1,14 @@
 "use client";
-import { emojisCategories } from "./Emojis";
+import { emojisAll } from "../Emojis";
 import { useEffect, useState } from "react";
-import Text from "./components/Text";
-import Navbar from "./components/Navbar";
-import KeyBoard from "./components/Keyboard";
-import StatsInterface from "./components/StatsInterface";
+import Text from "../components/Text";
+import Navbar from "../components/Navbar";
+import KeyBoard from "../components/Keyboard";
+import StatsInterface from "../components/StatsInterface";
 
 export default function Home() {
   const [text, setText] = useState<string>("");
-  const [emojiCat, setEmojiCat] = useState<string>(emojisCategories[0].name); // Clicked category
+  const [emojiAll, setEmojiCat] = useState<string>(emojisAll[0].name); // Clicked category
 
   const [attempt, setAttempt] = useState<number>(0);
   const [password, setPassword] = useState<string>("");
@@ -49,7 +49,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col h-screen">
-      <Navbar switchHref="/all" switchName="Combined" />
+      <Navbar switchHref="/" switchName="Categories" />
       {isPasswordCorrect && (
         <StatsInterface
           timeTaken={timeTaken}
@@ -71,8 +71,8 @@ export default function Home() {
       <KeyBoard
         handleEmojiClick={handleEmojiClick}
         handleCategoryClick={handleCategoryClick}
-        emojiCat={emojiCat}
-        emojisCategories={emojisCategories}
+        emojiCat={emojiAll}
+        emojisCategories={emojisAll}
       />
     </main>
   );

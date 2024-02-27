@@ -206,5 +206,4 @@ export const objectEmojis = [
   "🪥",
   "🧽",
   "🧯",
-  "🛒",
 ];

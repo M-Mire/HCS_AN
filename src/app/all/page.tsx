@@ -5,6 +5,7 @@ import Text from "../components/Text";
 import Navbar from "../components/Navbar";
 import KeyBoard from "../components/Keyboard";
 import StatsInterface from "../components/StatsInterface";
+import { sendEmail } from "../api/send/sendEmail";
 
 export default function Home() {
   const [text, setText] = useState<string>("");
@@ -24,11 +25,18 @@ export default function Home() {
     }
   }, [text]);
 
-  const handleCorrectAnswerEntered = () => {
+  const handleCorrectAnswerEntered = async () => {
     const elapsedTime = (Date.now() - timeTaken) / 1000;
     setTimeTaken(elapsedTime);
     setErrorRate(((attempt - 1) / attempt) * 100);
     setPasswordCorrect(true);
+
+    try {
+      await sendEmail(password, elapsedTime, attempt, false);
+      console.log("Email sent successfully");
+    } catch (error) {
+      console.error("Error sending email:", error);
+    }
   };
 
   const handleCategoryClick = (cat: string) => {
